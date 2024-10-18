@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
 
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="css/my_style.css">
 </head>
@@ -19,23 +20,78 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <td><button class="button is-success"><span><i class="fa fa-fw fa-remove"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw fa-circle-o"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw"></i></span></button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(0) }" @click="makeMove(0)">
+                            <span>
+                                <i v-if="board[0] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[0] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(1) }" @click="makeMove(1)">
+                            <span>
+                                <i v-if="board[1] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[1] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(2) }" @click="makeMove(2)">
+                            <span>
+                                <i v-if="board[2] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[2] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
                     </tr>
                     <tr>
-                        <td><button class="button is-success"><span><i class="fa fa-fw fa-remove"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw fa-circle-o"></i></span></button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(3) }" @click="makeMove(3)">
+                            <span>
+                                <i v-if="board[3] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[3] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(4) }" @click="makeMove(4)">
+                            <span>
+                                <i v-if="board[4] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[4] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(5) }" @click="makeMove(5)">
+                            <span>
+                                <i v-if="board[5] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[5] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
                     </tr>
                     <tr>
-                        <td><button class="button is-success"><span><i class="fa fa-fw fa-remove"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw fa-circle-o"></i></span></button></td>
-                        <td><button class="button"><span><i class="fa fa-fw fa-remove"></i></span></button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(6) }" @click="makeMove(6)">
+                            <span>
+                                <i v-if="board[6] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[6] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(7) }" @click="makeMove(7)">
+                            <span>
+                                <i v-if="board[7] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[7] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
+                        <td><button class="button" :class="{ 'is-success': winningCombination.includes(8) }" @click="makeMove(8)">
+                            <span>
+                                <i v-if="board[8] === 'X'" class="fa fw fa-remove"></i>
+                                <i v-else-if="board[8] === 'O'" class="fa fw fa-circle-o"></i>
+                                <i v-else class="fa fw"></i> <!-- Placeholder for empty cell -->
+                            </span>
+                        </button></td>
                     </tr>
+                </tbody>
             </table>
             <div class="mt-5">
-                <button id="new-game" class="button is-danger"><span><i class="fa fa-refresh"></i> New Game</span></button>
+                <button id="new-game" class="button is-danger" @click="resetGame"><span><i class="fa fw fa-refresh"></i> New Game</span></button>
             </div>
         </div>
     </section>
