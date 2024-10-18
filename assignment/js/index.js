@@ -9,12 +9,12 @@ app.data = {
             board: Array(9).fill(null),  // 9 cells representing the Tic-Tac-Toe grid
             currentPlayer: 'X',  // X starts first
             winner: null,  // No winner initially
-            winningCombination: []  // Store winning combination indices
+            winSet: []  // Store winning combination indices
         };
     },
     methods: {
         // Make a move when a player clicks a button
-        makeMove(index) {
+        onClickButton(index) {
             // Prevent moves if the game is already won or the cell is not empty
             if (!this.board[index] && !this.winner) {
                 console.log(`Placing ${this.currentPlayer} at position ${index}`);
@@ -41,16 +41,16 @@ app.data = {
 
         // Check for a winner
         checkWinner() {
-            const winningCombinations = [
+            const winSets = [
                 [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
                 [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
                 [0, 4, 8], [2, 4, 6]  // Diagonals
             ];
 
-            for (let combination of winningCombinations) {
+            for (let combination of winSets) {
                 const [a, b, c] = combination;
                 if (this.board[a] && this.board[a] === this.board[b] && this.board[a] === this.board[c]) {
-                    this.winningCombination = combination;
+                    this.winSet = combination;
                     console.log(`Winning combination: ${combination}`);
                     return true;  // We found a winner
                 }
@@ -63,7 +63,7 @@ app.data = {
             console.log("Resetting the game...");
             this.board = Array(9).fill(null);  // Reset the board
             this.winner = null;  // Clear the winner
-            this.winningCombination = [];  // Clear the winning combination
+            this.winSet = [];  // Clear the winning combination
             this.currentPlayer = 'X';  // Reset to X starting
             console.log('Game has been reset.');
         }
